@@ -207,10 +207,10 @@ public class IppUtil {
   }
 
   /**
-   * concatenate nio-ByteBuffers
-   * 
-   * @param  ArrayList <ByteBuffer> buffers
-   * @return ByteBuffer
+   * Concatenate nio-ByteBuffers.
+   *
+   * @param buffers the list of ByteBuffers to concatenate
+   * @return concatenated ByteBuffer
    */
   public static ByteBuffer concatenateBytebuffers(ArrayList<ByteBuffer> buffers) {
     int n = 0;

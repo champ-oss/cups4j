@@ -45,18 +45,13 @@ public class IppCancelJobOperation extends IppOperation {
   }
 
   /**
-   * 
-   * @param url
-   *          printer-uri
-   * @param map
-   *          attributes
-   *          i.e.job-name,ipp-attribute-fidelity,document-name,compression,
-   *          document -format,document-natural-language,job-impressions
-   *          ,job-media-sheets, job-template-attributes
+   * @param uri printer-uri
+   * @param map attributes i.e. job-name, ipp-attribute-fidelity, document-name, compression,
+   *            document-format, document-natural-language, job-impressions, job-media-sheets,
+   *            job-template-attributes
    * @return IPP header
-   * @throws UnsupportedEncodingException
+   * @throws UnsupportedEncodingException if encoding fails
    */
-
   public ByteBuffer getIppHeader(URL uri, Map<String, String> map) throws UnsupportedEncodingException {
     if (uri == null) {
       LOG.error("IppCancelJobOperation.getIppHeader(): uri is null");
@@ -92,15 +87,16 @@ public class IppCancelJobOperation extends IppOperation {
 
   /**
    * Cancels a print job on the IPP server running on the given host.
-   * 
-   * @param hostname
-   * @param userName
-   * @param jobID
-   * @param message
-   * @return true on successful cancelation otherwise false.
-   * @throws Exception
+   *
+   * @param hostname the hostname
+   * @param userName the user name
+   * @param jobID the job ID
+   * @param printer the printer
+   * @param creds authentication credentials
+   * @return true on successful cancellation otherwise false.
+   * @throws Exception if operation fails
    */
-  public boolean cancelJob(String hostname, String userName, int jobID, 
+  public boolean cancelJob(String hostname, String userName, int jobID,
 		  CupsPrinter printer, CupsAuthentication creds) throws Exception {
 
     Map<String, String> map = new HashMap<String, String>();

@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
  * 
  * See the GNU Lesser General Public License for more details. You should have
  * received a copy of the GNU Lesser General Public License along with this
- * program; if not, see <http://www.gnu.org/licenses/>.
+ * program; if not, see &lt;http://www.gnu.org/licenses/&gt;.
  */
 public class IppTag {
   private static final Logger LOG = LoggerFactory.getLogger(IppTag.class);

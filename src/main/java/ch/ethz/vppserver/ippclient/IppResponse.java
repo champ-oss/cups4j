@@ -28,7 +28,7 @@ import org.slf4j.LoggerFactory;
  * 
  * See the GNU Lesser General Public License for more details. You should have
  * received a copy of the GNU Lesser General Public License along with this
- * program; if not, see <http://www.gnu.org/licenses/>.
+ * program; if not, see &lt;http://www.gnu.org/licenses/&gt;.
  */
 public class IppResponse {
   private static final Logger LOG = LoggerFactory.getLogger(IppResponse.class);
@@ -123,10 +123,9 @@ public class IppResponse {
   }
 
   /**
-   * 
-   * @param channel
-   * @return
-   * @throws IOException
+   * @param buffer the byte buffer containing the response
+   * @return the IPP result
+   * @throws IOException if an I/O error occurs
    */
   public IppResult getResponse(ByteBuffer buffer) throws IOException {
 
@@ -232,10 +231,12 @@ public class IppResponse {
     String errorText = new String(buffer);
     if (errorText.contains("Unauthorized")) {
       result.setIppStatusResponse("client-error-not-authorized (0x403)");
+      LOG.warn("CUPS server returned Unauthorized error");
     } else {
       result.setIppStatusResponse("unknown");
+      LOG.warn("CUPS server returned error response");
     }
-    LOG.warn(errorText);
+    LOG.debug("Error response body: {}", errorText);
     return result;
   }
 
