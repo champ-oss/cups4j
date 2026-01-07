@@ -108,7 +108,7 @@ public class IppHoldJobOperation extends IppOperation {
     }
     map.put("requesting-user-name", userName);
 
-    URL url = new URL("http://" + hostname + "/jobs/" + Integer.toString(jobID));
+    URL url = new URL("https://" + hostname + "/jobs/" + Integer.toString(jobID));
     map.put("job-uri", url.toString());
 
     IppResult result = request(printer, url, map, creds);

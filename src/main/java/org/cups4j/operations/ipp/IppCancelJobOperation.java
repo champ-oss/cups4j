@@ -110,8 +110,8 @@ public class IppCancelJobOperation extends IppOperation {
     }
     map.put("requesting-user-name", userName);
 
-    URL url = new URL("http://" + hostname + "/jobs/" + Integer.toString(jobID));
-    URL urlService = new URL("http://" + hostname + ":" + ippPort + "/jobs/" + Integer.toString(jobID));
+    URL url = new URL("https://" + hostname + "/jobs/" + Integer.toString(jobID));
+    URL urlService = new URL("https://" + hostname + ":" + ippPort + "/jobs/" + Integer.toString(jobID));
     
     map.put("job-uri", url.toString());
 

@@ -2,47 +2,48 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.cups4j</groupId>
+  <groupId>com.champtitles</groupId>
   <artifactId>cups4j</artifactId>
-  <version>0.7.8</version>
+  <version>1.0.0</version>
   <packaging>jar</packaging>
 
   <name>cups4j</name>
-  <description>Java printing library for CUPS/IPP</description>
-  <url>http://cups4j.org</url>
+  <description>Java printing library for CUPS/IPP with HTTPS support. Fork of org.cups4j:cups4j.</description>
+  <url>https://github.com/champ-oss/cups4j</url>
 
   <licenses>
     <license>
-      <name>LGPL license, Version 3.0</name>
-      <url>https://www.gnu.org/licenses/lgpl.txt</url>
+      <name>LGPL-3.0</name>
+      <url>https://www.gnu.org/licenses/lgpl-3.0.txt</url>
+      <distribution>repo</distribution>
     </license>
   </licenses>
 
   <developers>
-    <developer>
-      <name>Harald Weyhing</name>
-      <email>info@cups4j.org</email>
-      <organization>Harald Weyhing</organization>
-      <organizationUrl>http://cups4j.org</organizationUrl>
-    </developer>
+      <developer>
+          <name>Harald Weyhing</name>
+          <email>info@cups4j.org</email>
+          <organization>Harald Weyhing</organization>
+          <organizationUrl>http://cups4j.org</organizationUrl>
+          <roles>
+              <role>Original Author</role>
+          </roles>
+      </developer>
+      <developer>
+          <name>CHAMP Titles</name>
+          <organization>CHAMP Titles Inc.</organization>
+          <organizationUrl>https://www.champtitles.com/</organizationUrl>
+          <roles>
+              <role>Fork Maintainer</role>
+          </roles>
+      </developer>
   </developers>
 
   <scm>
-    <connection>scm:git:git://github.com/harwey/cups4j</connection>
-    <developerConnection>scm:git:ssh://github.com:harwey/cups4j</developerConnection>
-    <url>http://github.com/harwey/cups4j/tree/master</url>
+    <connection>scm:git:git://github.com/champ-oss/cups4j.git</connection>
+    <developerConnection>scm:git:ssh://github.com:champ-oss/cups4j.git</developerConnection>
+    <url>https://github.com/champ-oss/cups4j</url>
   </scm>
-
-  <distributionManagement>
-    <snapshotRepository>
-      <id>ossrh-snapshots</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-    </snapshotRepository>
-    <repository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-    </repository>
-  </distributionManagement>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

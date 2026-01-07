@@ -43,7 +43,7 @@ public class CupsGetDefaultOperation extends IppOperation {
     HashMap<String, String> map = new HashMap<String, String>();
     map.put("requested-attributes", "printer-name printer-uri-supported printer-location");
 
-    IppResult result = command.request(null, new URL("http://" + hostname + "/printers"), map, creds);
+    IppResult result = command.request(null, new URL("https://" + hostname + "/printers"), map, creds);
     for (AttributeGroup group : result.getAttributeGroupList()) {
       if (group.getTagName().equals("printer-attributes-tag")) {
         String printerURL = null;
@@ -51,7 +51,7 @@ public class CupsGetDefaultOperation extends IppOperation {
         String location = null;
         for (Attribute attr : group.getAttribute()) {
           if (attr.getName().equals("printer-uri-supported")) {
-            printerURL = attr.getAttributeValue().get(0).getValue().replace("ipp://", "http://");
+            printerURL = attr.getAttributeValue().get(0).getValue().replace("ipp://", "https://");
           } else if (attr.getName().equals("printer-name")) {
             printerName = attr.getAttributeValue().get(0).getValue();
           } else if (attr.getName().equals("printer-location")) {

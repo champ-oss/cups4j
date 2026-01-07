@@ -56,7 +56,7 @@ public class CupsGetPrintersOperation extends IppOperation {
     // map.put("requested-attributes", "all");
     this.ippPort = port;
 
-    IppResult result = request(null, new URL("http://" + hostname + ":" + port + "/printers"), map, creds);
+    IppResult result = request(null, new URL("https://" + hostname + ":" + port + "/printers"), map, creds);
 
     for (AttributeGroup group : result.getAttributeGroupList()) {
       CupsPrinter printer = null;
@@ -82,10 +82,10 @@ public class CupsGetPrintersOperation extends IppOperation {
 
         for (Attribute attr : group.getAttribute()) {
           if (attr.getName().equals("printer-uri-supported")) {
-            printerURI = getAttributeValue(attr).replace("ipp://", "http://");
-            printerURI = StringUtils.remove(printerURI, "http://");
+            printerURI = getAttributeValue(attr).replace("ipp://", "https://");
+            printerURI = StringUtils.remove(printerURI, "https://");
             printerURI = StringUtils.substringAfter(printerURI, "/");
-            printerURI = "http://" + hostname + ":" + port + "/" + printerURI; 
+            printerURI = "https://" + hostname + ":" + port + "/" + printerURI; 
           } else if (attr.getName().equals("printer-name")) {
             printerName = getAttributeValue(attr);
           } else if (attr.getName().equals("printer-location")) {
