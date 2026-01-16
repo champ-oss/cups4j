@@ -156,7 +156,7 @@ public abstract class IppOperation {
 
     CloseableHttpClient client = IppHttp.createHttpClient();
 	
-    HttpPost httpPost = new HttpPost(new URI("http://" + url.getHost() + ":" + ippPort) + url.getPath());
+    HttpPost httpPost = new HttpPost(new URI("https://" + url.getHost() + ":" + ippPort) + url.getPath());
     IppHttp.setHttpHeaders(httpPost, printer, creds);
 
     byte[] bytes = new byte[ippBuf.limit()];
@@ -212,7 +212,7 @@ public abstract class IppOperation {
   protected String stripPortNumber(URL url) {
     String protocol = url.getProtocol();
     if ("ipp".equals(protocol)) {
-      protocol = "http";
+      protocol = "https";
     }
 
     return protocol + "://" + url.getHost() + url.getPath();

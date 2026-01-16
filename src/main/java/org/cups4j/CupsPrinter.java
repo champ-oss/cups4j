@@ -35,6 +35,7 @@ import ch.ethz.vppserver.ippclient.IppResult;
 
 /**
  * Represents a printer on your IPP server
+ * @author oboehm
  */
 
 public class CupsPrinter {
@@ -201,7 +202,6 @@ public class CupsPrinter {
    *          more print jobs
    * @return PrintRequestResult
    * @since 0.7.2
-   * @author oboehm
    */
   public PrintRequestResult print(PrintJob job1, PrintJob... moreJobs) {
     verifyUser(job1.getUserName(), moreJobs);
@@ -234,7 +234,6 @@ public class CupsPrinter {
    *          the name of a job
    * @return the job-id
    * @since 0.7.2
-   * @author oboehm
    * @deprecated use {@link #createJob(PrintJob)} or
    *             {@link #createJob(String, String)}
    */
@@ -254,7 +253,6 @@ public class CupsPrinter {
    *          the name of a user
    * @return the job-id
    * @since 0.7.4
-   * @author oboehm
    */
   public int createJob(String jobName, String userName) {
     return createJob(new PrintJob.Builder(new byte[0]).jobName(jobName).userName(userName).build());
@@ -269,7 +267,6 @@ public class CupsPrinter {
    *          the print-job with job-name and user-name
    * @return the job-id
    * @since 0.7.4
-   * @author oboehm
    */
   public int createJob(PrintJob job) {
     Map<String, String> attributes = new HashMap<String, String>();
@@ -296,7 +293,6 @@ public class CupsPrinter {
    *          set it to true if it is the last document
    * @return the print request result
    * @since 0.7.2
-   * @author oboehm
    */
   public PrintRequestResult print(PrintJob job, int jobId, boolean lastDocument) {
     IppSendDocumentOperation op = new IppSendDocumentOperation(printerURL.getPort(), jobId, lastDocument);

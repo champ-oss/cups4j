@@ -1,14 +1,45 @@
 package cups4j;
 
 import org.cups4j.CupsClient;
+import org.cups4j.CupsContainer;
 import org.cups4j.CupsPrinter;
+import org.junit.AfterClass;
+import org.junit.Assume;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.List;
 
+/**
+ * Integration tests for CUPS client functionality.
+ * Uses Testcontainers to spin up a CUPS server in Docker.
+ * Tests will be skipped if Docker is not available.
+ */
 public class TestCups {
+
+  private static CupsContainer cupsContainer;
+  private static boolean dockerAvailable;
+
+  @BeforeClass
+  public static void setUp() {
+    dockerAvailable = CupsContainer.isDockerAvailable();
+    Assume.assumeTrue("Docker is not available - skipping integration tests", dockerAvailable);
+
+    cupsContainer = new CupsContainer();
+    cupsContainer.start();
+  }
+
+  @AfterClass
+  public static void tearDown() {
+    if (cupsContainer != null) {
+      cupsContainer.stop();
+    }
+  }
+
   @Test
   public void testCupsClient() throws Exception {
+    Assume.assumeTrue("Docker is not available", dockerAvailable);
+
     CupsClient client = getCupsClient();
     List<CupsPrinter> printers = client.getPrinters();
     for (CupsPrinter p : printers) {
@@ -29,20 +60,19 @@ public class TestCups {
   }
 
   /**
-   * If you have no CUPS running on your local machine you must set the
-   * envrionment variables 'host' and 'port' to your CUPS server in the
-   * network. Otherwise the test fails.
-   * 
-   * @return your CupsClient for testing
+   * Creates a CupsClient connected to the Testcontainers CUPS server.
+   *
+   * @return CupsClient for testing
    */
-  public static CupsClient getCupsClient() {
-    String host = System.getProperty("host", "localhost");
-    int port = Integer.parseInt(System.getProperty("port", "631"));
-    try {
-      return new CupsClient(host, port);
-    } catch (Exception ex) {
-      throw new IllegalStateException("cannot get CUPS client for " + host + ":" + port);
-    }
+  public static CupsClient getCupsClient() throws Exception {
+    return cupsContainer.createCupsClient();
   }
 
+  /**
+   * Returns the CUPS container for use in other tests.
+   * @return the CUPS container instance
+   */
+  public static CupsContainer getCupsContainer() {
+    return cupsContainer;
+  }
 }

@@ -60,21 +60,18 @@ public class PrintJob {
     private Map<String, String> attributes;
 
     /**
-     * Constructor
-     * 
-     * @param byte[] document
-     * 
+     * Constructor.
+     *
+     * @param document the document as byte array
      */
     public Builder(byte[] document) {
       this.document = new ByteArrayInputStream(document);
     }
 
     /**
-     * Constructor
-     * 
-     * @param InputStream
-     *          document
-     * 
+     * Constructor.
+     *
+     * @param document the document as InputStream
      */
     public Builder(InputStream document) {
       this.document = document;
@@ -92,9 +89,9 @@ public class PrintJob {
     }
 
     /**
-     * Page ranges
-     * 
-     * @param String pageRanges 1-3, 5, 8, 10-13
+     * Page ranges.
+     *
+     * @param pageRanges the page ranges (e.g., "1-3, 5, 8, 10-13")
      * @return Builder
      */
     public Builder pageRanges(String pageRanges) {

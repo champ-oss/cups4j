@@ -203,7 +203,7 @@ public class CupsClient {
    * @throws Exception
    */
   public CupsPrinter getPrinterOnCurrentHost(String printerURL) throws Exception {
-    return getPrinter(new URL("http://" + host + ":" + port + printerURL));
+    return getPrinter(new URL("https://" + host + ":" + port + printerURL));
   }
 
   /**

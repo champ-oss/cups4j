@@ -110,7 +110,7 @@ public class IppGetJobAttributesOperation extends IppOperation {
 
     map.put("requested-attributes", "all");
     map.put("requesting-user-name", userName);
-    IppResult result = request(null, new URL("http://" + hostname + "/jobs/" + jobID), map, creds);
+    IppResult result = request(null, new URL("https://" + hostname + "/jobs/" + jobID), map, creds);
 
     // IppResultPrinter.print(result);
     for (AttributeGroup group : result.getAttributeGroupList()) {
@@ -123,13 +123,13 @@ public class IppGetJobAttributesOperation extends IppOperation {
             String attValue = getAttributeValue(attr);
 
             if ("job-uri".equals(attr.getName())) {
-              job.setJobURL(new URL(attValue.replace("ipp://", "http://")));
+              job.setJobURL(new URL(attValue.replace("ipp://", "https://")));
             } else if ("job-id".equals(attr.getName())) {
               job.setJobID(Integer.parseInt(attValue));
             } else if ("job-state".equals(attr.getName())) {
               job.setJobState(JobStateEnum.fromString(attValue));
             } else if ("job-printer-uri".equals(attr.getName())) {
-              job.setPrinterURL(new URL(attValue.replace("ipp://", "http://")));
+              job.setPrinterURL(new URL(attValue.replace("ipp://", "https://")));
             } else if ("job-name".equals(attr.getName())) {
               job.setJobName(attValue);
             } else if ("job-originating-user-name".equals(attr.getName())) {

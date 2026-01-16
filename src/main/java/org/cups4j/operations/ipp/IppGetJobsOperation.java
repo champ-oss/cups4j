@@ -129,13 +129,13 @@ public class IppGetJobsOperation extends IppOperation {
             String attValue = getAttributeValue(attr);
 
             if ("job-uri".equals(attr.getName())) {
-              jobAttributes.setJobURL(new URL(attValue.replace("ipp://", "http://")));
+              jobAttributes.setJobURL(new URL(attValue.replace("ipp://", "https://")));
             } else if ("job-id".equals(attr.getName())) {
               jobAttributes.setJobID(Integer.parseInt(attValue));
             } else if ("job-state".equals(attr.getName())) {
               jobAttributes.setJobState(JobStateEnum.fromString(attValue));
             } else if ("job-printer-uri".equals(attr.getName())) {
-              jobAttributes.setPrinterURL(new URL(attValue.replace("ipp://", "http://")));
+              jobAttributes.setPrinterURL(new URL(attValue.replace("ipp://", "https://")));
             } else if ("job-name".equals(attr.getName())) {
               jobAttributes.setJobName(attValue);
             } else if ("job-originating-user-name".equals(attr.getName())) {

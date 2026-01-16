@@ -45,18 +45,13 @@ public class CupsMoveJobOperation extends IppOperation {
   }
 
   /**
-   * 
-   * @param url
-   *          printer-uri
-   * @param map
-   *          attributes
-   *          i.e.job-name,ipp-attribute-fidelity,document-name,compression,
-   *          document -format,document-natural-language,job-impressions
-   *          ,job-media-sheets, job-template-attributes
+   * @param uri printer-uri
+   * @param map attributes i.e. job-name, ipp-attribute-fidelity, document-name, compression,
+   *            document-format, document-natural-language, job-impressions, job-media-sheets,
+   *            job-template-attributes
    * @return IPP header
-   * @throws UnsupportedEncodingException
+   * @throws UnsupportedEncodingException if encoding fails
    */
-
   public ByteBuffer getIppHeader(URL uri, Map<String, String> map) throws UnsupportedEncodingException {
     if (uri == null) {
       LOG.error("CupsMoveJobOperation.getIppHeader(): uri is null");
@@ -90,16 +85,18 @@ public class CupsMoveJobOperation extends IppOperation {
   }
 
   /**
-   * Cancels a print job on the IPP server running on the given host.
-   * 
-   * @param hostname
-   * @param userName
-   * @param jobID
-   * @param message
-   * @return true on successful cancelation otherwise false.
-   * @throws Exception
+   * Moves a print job on the IPP server running on the given host.
+   *
+   * @param printer the printer
+   * @param hostname the hostname
+   * @param userName the user name
+   * @param jobID the job ID
+   * @param targetPrinterURL the target printer URL
+   * @param creds authentication credentials
+   * @return true on successful move otherwise false.
+   * @throws Exception if operation fails
    */
-  public boolean moveJob(CupsPrinter printer, String hostname, String userName, int jobID, 
+  public boolean moveJob(CupsPrinter printer, String hostname, String userName, int jobID,
 		  URL targetPrinterURL, CupsAuthentication creds) throws Exception {
     Map<String, String> map = new HashMap<String, String>();
 
@@ -108,7 +105,7 @@ public class CupsMoveJobOperation extends IppOperation {
     }
     map.put("requesting-user-name", userName);
 
-    URL url = new URL("http://" + hostname + "/jobs/" + Integer.toString(jobID));
+    URL url = new URL("https://" + hostname + "/jobs/" + Integer.toString(jobID));
     map.put("job-uri", url.toString());
 
     map.put("target-printer-uri", stripPortNumber(targetPrinterURL));

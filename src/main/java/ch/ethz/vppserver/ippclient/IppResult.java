@@ -19,7 +19,7 @@ import java.util.List;
  * 
  * See the GNU Lesser General Public License for more details. You should have
  * received a copy of the GNU Lesser General Public License along with this
- * program; if not, see <http://www.gnu.org/licenses/>.
+ * program; if not, see &lt;http://www.gnu.org/licenses/&gt;.
  */
 public class IppResult {
   private String httpStatusResponse = null;
